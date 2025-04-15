@@ -1,0 +1,17 @@
+{
+  "name": "panes-layout",
+  "version": "1.0.0",
+  "scripts": {
+    "clean": "rimraf dist",
+    "minify:css": "cleancss -o dist/panes.min.css src/panes.css",
+    "minify:js": "terser src/panes.js -o dist/panes.min.js",
+    "copy:html": "copyfiles -f src/*.html dist",
+    "build": "npm run clean && mkdir dist && npm run minify:css && npm run minify:js && npm run copy:html"
+  },
+  "devDependencies": {
+    "clean-css-cli": "^5.6.2",
+    "copyfiles": "^2.4.1",
+    "rimraf": "^6.0.1",
+    "terser": "^5.18.2"
+  }
+}

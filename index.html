@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VS Code Style Pane Layout with Bootstrap 5</title>
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Panes CSS -->
+    <link href="./dist/panes.min.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="pane-container" id="paneContainer">
+      <!-- Explorer Pane -->
+      <div class="pane" id="pane1" style="width: 250px">
+        <div class="pane-content">
+          <h5 class="mb-3">EXPLORER</h5>
+          <div class="demo-content">
+            <ul class="list-unstyled">
+              <li><i class="bi bi-folder"></i> project</li>
+              <li>├─ <i class="bi bi-file-code"></i> index.html</li>
+              <li>├─ <i class="bi bi-file-code"></i> script.js</li>
+              <li>└─ <i class="bi bi-file-code"></i> styles.css</li>
+            </ul>
+          </div>
+          <div class="demo-content">
+            <p><strong>Bootstrap Compatible</strong></p>
+            <div class="btn-group mb-3">
+              <button class="btn btn-sm btn-outline-primary">New File</button>
+              <button class="btn btn-sm btn-outline-secondary">Refresh</button>
+            </div>
+            <div class="alert alert-info">
+              Using Bootstrap components here works fine!
+            </div>
+          </div>
+        </div>
+        <div class="pane-resizer" data-pane="pane1"></div>
+      </div>
+
+      <!-- Editor Pane -->
+      <div class="pane" id="pane2" style="width: 500px">
+        <div class="pane-content">
+          <div class="d-flex justify-content-between mb-3">
+            <h5>EDITOR</h5>
+            <div>
+              <span class="badge bg-secondary">script.js</span>
+            </div>
+          </div>
+          <div class="demo-content">
+            <div class="code-block">
+              // Resizable panes implementation
+              document.addEventListener('DOMContentLoaded', function() { const
+              panes = document.querySelectorAll('.pane'); let activeResizer =
+              null; // Add event listeners to all resizers const resizers =
+              document.querySelectorAll('.pane-resizer');
+              resizers.forEach(resizer => {
+              resizer.addEventListener('mousedown', startResize); }); function
+              startResize(e) { // Resizing logic here } });
+            </div>
+          </div>
+          <div class="demo-content">
+            <div class="form-group">
+              <label for="sampleInput" class="form-label"
+                >Sample Bootstrap Form</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="sampleInput"
+                placeholder="Bootstrap input"
+              />
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
+              <button class="btn btn-primary">Save</button>
+            </div>
+          </div>
+        </div>
+        <div class="pane-resizer" data-pane="pane2"></div>
+      </div>
+
+      <!-- Output/Terminal Pane -->
+      <div class="pane" id="pane3" style="width: calc(100% - 750px)">
+        <div class="pane-content">
+          <h5 class="mb-3">OUTPUT</h5>
+          <div
+            class="demo-content"
+            style="background-color: #1e1e1e; color: #d4d4d4"
+          >
+            <div
+              class="code-block"
+              style="background-color: transparent; color: inherit"
+            ></div>
+          </div>
+          <div class="demo-content">
+            <div class="card">
+              <div class="card-header">Bootstrap Card Component</div>
+              <div class="card-body">
+                <p class="card-text">
+                  This is a Bootstrap card component demonstrating compatibility
+                  with the pane layout system.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Panes JS  -->
+    <script src="./dist/panes.min.js"></script>
+  </body>
+</html>
