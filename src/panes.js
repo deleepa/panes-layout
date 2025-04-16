@@ -38,6 +38,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Apply the new width, ensuring it's at least the minimum width
     if (newWidth >= 100) {
       paneToResize.style.width = newWidth + "px";
+      paneToResize.style.minWidth = newWidth + "px"; // Add min-width to maintain size in flex context
+      paneToResize.style.flexGrow = 0; // Prevent automatic growth
+      paneToResize.style.flexShrink = 0; // Prevent automatic shrinking
 
       // If it's the last pane with a resizer, adjust the width of the last pane
       if (paneToResize.id === "pane2") {
@@ -47,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (remainingWidth >= 100) {
           lastPane.style.width = `${remainingWidth}px`;
+          lastPane.style.flexGrow = 1; // Allow last pane to take remaining space
         }
       }
 
@@ -58,6 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (remainingWidth >= 100) {
           lastPane.style.width = `${remainingWidth}px`;
+          lastPane.style.flexGrow = 1; // Allow last pane to take remaining space
         }
       }
     }
@@ -83,11 +88,13 @@ document.addEventListener("DOMContentLoaded", function () {
       if (pane.dataset.prevWidth) {
         // Restore previous width
         pane.style.width = pane.dataset.prevWidth;
+        pane.style.minWidth = pane.dataset.prevWidth;
         pane.dataset.prevWidth = "";
       } else {
         // Collapse to minimum
         pane.dataset.prevWidth = pane.style.width;
         pane.style.width = "50px";
+        pane.style.minWidth = "50px";
       }
 
       // Recalculate the width for the last pane
@@ -98,6 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (remainingWidth >= 100) {
         lastPane.style.width = `${remainingWidth}px`;
+        lastPane.style.flexGrow = 1; // Allow last pane to take remaining space
       }
     });
   });
@@ -114,6 +122,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (remainingWidth >= 100) {
       lastPane.style.width = `${remainingWidth}px`;
+      lastPane.style.flexGrow = 1;
     }
   });
+  
+  // Initial setup for flexbox
+  document.getElementById("pane1").style.flexGrow = 0;
+  document.getElementById("pane1").style.flexShrink = 0;
+  document.getElementById("pane2").style.flexGrow = 0;
+  document.getElementById("pane2").style.flexShrink = 0;
+  document.getElementById("pane3").style.flexGrow = 1;
 });

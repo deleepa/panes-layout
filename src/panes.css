@@ -1,3 +1,10 @@
+/* Apply box-sizing to all elements */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html,
 body {
   height: 100%;
@@ -11,6 +18,7 @@ body {
   overflow-x: auto;
   position: relative;
   white-space: nowrap;
+  display: flex; /* Use flexbox to help with height distribution */
 }
 
 .pane {
@@ -23,12 +31,17 @@ body {
   display: inline-block;
   vertical-align: top;
   white-space: normal;
+  display: flex; /* Use flexbox to ensure child content takes full height */
+  flex-direction: column;
 }
 
 .pane-content {
   padding: 15px;
   height: 100%;
   overflow: auto;
+  flex: 1; /* Allow the content to grow and fill available space */
+  display: flex;
+  flex-direction: column;
 }
 
 .pane-resizer {
@@ -81,6 +94,14 @@ body {
   padding: 15px;
   margin-bottom: 15px;
   background-color: white;
+  flex: 1; /* Allow demo content to grow */
+  overflow: auto; /* Add scrolling for overflow content */
+}
+
+/* Make the last demo-content in each pane take up available space */
+.pane-content > .demo-content:last-child {
+  flex: 1;
+  margin-bottom: 0;
 }
 
 .code-block {
